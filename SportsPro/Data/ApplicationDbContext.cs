@@ -17,11 +17,21 @@ namespace SportsPro.Data
         public DbSet<SportsPro.Models.Incident> Incident { get; set; }
         public DbSet<SportsPro.Models.Product> Product { get; set; }
         public DbSet<SportsPro.Models.Technician> Technician { get; set; }
+        public DbSet<SportsPro.Models.Country> Countries { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             base.OnModelCreating(modelbuilder);
+            modelbuilder.Entity<Country>().HasData(
+                new Country { CountryId = 1, CountryName = "Canada" },
+                new Country { CountryId = 2, CountryName = "United States" },
+                new Country { CountryId = 3, CountryName = "United Kingdom" },
+                new Country { CountryId = 4, CountryName = "France" },
+                new Country { CountryId = 5, CountryName = "Japan" },
+                new Country { CountryId = 6, CountryName = "India" },
+                new Country { CountryId = 4, CountryName = "China" }
+            );
             modelbuilder.Entity<Customer>().HasData(
                 new Customer
                 {
@@ -32,7 +42,7 @@ namespace SportsPro.Data
                     City = "Toronto",
                     State = "Ontario",
                     PostalCode = "L4R RY9",
-                    Country = "Canada",
+                    CountryId = 1,
                     Email = "joe.smith@customer.com",
                     Phone = "416-967-1111"
 
@@ -47,7 +57,7 @@ namespace SportsPro.Data
                       City = "Toronto",
                       State = "Ontario",
                       PostalCode = "L4R RY9",
-                      Country = "Canada",
+                      CountryId = 1,
                       Email = "moe.smith@customer.com",
                       Phone = "416-447-1111"
 
@@ -62,7 +72,7 @@ namespace SportsPro.Data
                         City = "Toronto",
                         State = "Ontario",
                         PostalCode = "L4R RY9",
-                        Country = "Canada",
+                        CountryId = 1,
                         Email = "andrea.smith@customer.com",
                         Phone = "416-444-1111"
 
