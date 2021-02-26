@@ -50,9 +50,9 @@ namespace SportsPro.Controllers
         // GET: Incidents/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address");
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Code");
-            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "Email");
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Fullname");
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Name");
+            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "TechName");
             return View();
         }
 
@@ -69,9 +69,9 @@ namespace SportsPro.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", incident.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Code", incident.ProductId);
-            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "Email", incident.TechnicianId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId","Fullname", incident.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Name", incident.ProductId);
+            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "TechName", incident.TechnicianId);
             return View(incident);
         }
 
@@ -88,9 +88,9 @@ namespace SportsPro.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", incident.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Code", incident.ProductId);
-            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "Email", incident.TechnicianId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Fullname", incident.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Name", incident.ProductId);
+            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "TechName", incident.TechnicianId);
             return View(incident);
         }
 
@@ -126,9 +126,9 @@ namespace SportsPro.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Address", incident.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Code", incident.ProductId);
-            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "Email", incident.TechnicianId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Fullname", incident.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "ProductId", "Name", incident.ProductId);
+            ViewData["TechnicianId"] = new SelectList(_context.Technician, "TechnicianId", "TechName", incident.TechnicianId);
             return View(incident);
         }
 

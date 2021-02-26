@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Add Incident</h1>
 
-<h4>Incident</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,8 +17,8 @@
                 <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Product" class="control-label"></label>
-                <select asp-for="Product.Name" class ="form-control" asp-items="ViewBag.Product"></select>
+                <label asp-for="ProductId" class="control-label"></label>
+                <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -32,20 +32,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="TechnicianId" class="control-label"></label>
-                <select asp-for="TechnicianId" class ="form-control" asp-items="ViewBag.TechnicianId"></select>
+                <select asp-for="TechnicianId" class ="form-control" id="exampleFormControlTextarea3" rows="7" asp-items="ViewBag.TechnicianId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DateOpened" class="control-label"></label>
-                <input asp-for="DateOpened" class="form-control" />
+                <input asp-for="DateOpened" class="form-control" input type="date"/>
                 <span asp-validation-for="DateOpened" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateClosed" class="control-label"></label>
-                <input asp-for="DateClosed" class="form-control" />
+                <label asp-for="DateClosed" class="Time"></label>
+                <input asp-for="DateClosed" class="form-control" input type="date"/>
                 <span asp-validation-for="DateClosed" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add" class="btn btn-primary" />
             </div>
         </form>
     </div>

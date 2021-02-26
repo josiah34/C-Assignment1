@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,13 +9,16 @@ namespace SportsPro.Models
 {
     public class Customer
     {
+        [DisplayName("Customer")]
         public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "First name is required")]
+        [DisplayName("First Name")]
         public string Firstname { get; set; }
 
 
         [Required(ErrorMessage = "Last name is required")]
+        [DisplayName("Last Name")]
         public string Lastname { get; set; }
 
 
@@ -28,6 +32,7 @@ namespace SportsPro.Models
         public string State { get; set; }
 
         [Required(ErrorMessage = "Postal code is required")]
+        [DisplayName("Postal Code")]
         public string PostalCode { get; set; }
         
         
@@ -39,6 +44,9 @@ namespace SportsPro.Models
 
         [Required(ErrorMessage = "Phone number is required")]
         public string Phone { get; set; }
+
+        [DisplayName("Customer")]
+        public string Fullname { get { return string.Format("{0} {1}", Firstname, Lastname); } }
 
         public Customer()
         {
