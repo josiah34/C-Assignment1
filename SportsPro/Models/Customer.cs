@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace SportsPro.Models
 {
@@ -51,6 +52,27 @@ namespace SportsPro.Models
         public Customer()
         {
 
+        }
+        public List<KeyValuePair<string, string>> countryList
+
+        {
+            get
+            {
+                List<KeyValuePair<string, string>> listOfCountries = new List<KeyValuePair<string, string>>();
+                CultureInfo[] getCultureInfo = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+
+                foreach (CultureInfo getCulture in getCultureInfo)
+                {
+                    RegionInfo GetRegionInfo = new RegionInfo(getCulture.LCID);
+                    var countryName = new KeyValuePair<string, string>(GetRegionInfo.EnglishName, GetRegionInfo.EnglishName);
+                    if (!(listOfCountries.Contains(countryName)))
+                    {
+                        listOfCountries.Add(countryName);
+                    }
+                }
+                return listOfCountries.OrderBy(o => o.Key).ToList();
+
+            }
         }
     }
 }

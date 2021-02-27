@@ -46,7 +46,8 @@ namespace SportsPro.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
-            return View();
+            var customer = new Customer();
+            return View(customer);
         }
 
         // POST: Customers/Create
