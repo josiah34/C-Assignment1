@@ -68,7 +68,7 @@ namespace SportsPro.Models
                     if (!(listOfCountries.Contains(countryName)))
                     {
                         listOfCountries.Add(countryName);
-                    }
+                    } 
                 }
                 return listOfCountries.OrderBy(o => o.Key).ToList();
 
