@@ -37,7 +37,7 @@ namespace SportsPro.Models
         [DisplayName("Date Opened")]
         public DateTime DateOpened { get; set; }
         [DisplayName("Date Closed")]
-        public DateTime DateClosed { get; set; }
+        public DateTime? DateClosed { get; set; }
 
 
         public Incident()

@@ -20,10 +20,13 @@ namespace SportsPro.Controllers
         }
 
         // GET: Incidents
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
-            var applicationDbContext = _context.Incident.Include(i => i.Customer).Include(i => i.Product).Include(i => i.Technician);
-            return View(await applicationDbContext.ToListAsync());
+          
+                var applicationDbContext = _context.Incident.Include(i => i.Customer).Include(i => i.Product).Include(i => i.Technician);
+
+                return View(await applicationDbContext.ToListAsync());
+            
         }
 
         // GET: Incidents/Details/5

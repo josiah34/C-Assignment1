@@ -22,6 +22,7 @@ namespace SportsPro.Data
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             base.OnModelCreating(modelbuilder);
+
             modelbuilder.Entity<Customer>().HasData(
                 new Customer
                 {

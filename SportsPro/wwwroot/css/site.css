@@ -9,7 +9,9 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-
+input.input-validation-error {
+    border-color: red;
+}
 
 .btn-primary {
   color: #fff;

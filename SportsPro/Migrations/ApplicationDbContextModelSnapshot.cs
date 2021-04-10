@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportsPro.Data;
 
-namespace SportsPro.Data.Migrations
+namespace SportsPro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -228,11 +228,13 @@ namespace SportsPro.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(51)")
+                        .HasMaxLength(51);
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(51)")
+                        .HasMaxLength(51);
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -243,11 +245,13 @@ namespace SportsPro.Data.Migrations
 
                     b.Property<string>("Firstname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(51)")
+                        .HasMaxLength(51);
 
                     b.Property<string>("Lastname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(51)")
+                        .HasMaxLength(51);
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -255,11 +259,13 @@ namespace SportsPro.Data.Migrations
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(21)")
+                        .HasMaxLength(21);
 
                     b.Property<string>("State")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(51)")
+                        .HasMaxLength(51);
 
                     b.HasKey("CustomerId");
 
@@ -317,7 +323,7 @@ namespace SportsPro.Data.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateClosed")
+                    b.Property<DateTime?>("DateClosed")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOpened")
@@ -352,8 +358,7 @@ namespace SportsPro.Data.Migrations
                         {
                             IncidentId = 1,
                             CustomerId = 1,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2021, 2, 20, 15, 39, 0, 930, DateTimeKind.Local).AddTicks(123),
+                            DateOpened = new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1020),
                             Description = "System is constantly crashing. Will not open",
                             ProductId = 1,
                             TechnicianId = 3,
@@ -363,8 +368,7 @@ namespace SportsPro.Data.Migrations
                         {
                             IncidentId = 2,
                             CustomerId = 2,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2021, 2, 20, 15, 39, 0, 930, DateTimeKind.Local).AddTicks(839),
+                            DateOpened = new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1722),
                             Description = "Im having issues adding new staff to the system. Please Advise",
                             ProductId = 2,
                             TechnicianId = 1,
@@ -374,8 +378,7 @@ namespace SportsPro.Data.Migrations
                         {
                             IncidentId = 3,
                             CustomerId = 3,
-                            DateClosed = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOpened = new DateTime(2021, 2, 20, 15, 39, 0, 930, DateTimeKind.Local).AddTicks(870),
+                            DateOpened = new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1752),
                             Description = "I am trying to create a new event for the registration but it crashes when I click submit.",
                             ProductId = 3,
                             TechnicianId = 2,
@@ -415,7 +418,7 @@ namespace SportsPro.Data.Migrations
                             Code = "G4569",
                             Name = "Event System",
                             Price = 1525.99,
-                            ReleaseDate = new DateTime(2021, 2, 20, 15, 39, 0, 924, DateTimeKind.Local).AddTicks(5224)
+                            ReleaseDate = new DateTime(2021, 4, 9, 15, 21, 44, 359, DateTimeKind.Local).AddTicks(8974)
                         },
                         new
                         {
@@ -423,7 +426,7 @@ namespace SportsPro.Data.Migrations
                             Code = "G4568",
                             Name = "Staff Management Software",
                             Price = 1525.99,
-                            ReleaseDate = new DateTime(2021, 2, 20, 15, 39, 0, 929, DateTimeKind.Local).AddTicks(1950)
+                            ReleaseDate = new DateTime(2021, 4, 9, 15, 21, 44, 364, DateTimeKind.Local).AddTicks(2896)
                         },
                         new
                         {
@@ -431,7 +434,7 @@ namespace SportsPro.Data.Migrations
                             Code = "G4564",
                             Name = "Registration Software",
                             Price = 1525.99,
-                            ReleaseDate = new DateTime(2021, 2, 20, 15, 39, 0, 929, DateTimeKind.Local).AddTicks(1995)
+                            ReleaseDate = new DateTime(2021, 4, 9, 15, 21, 44, 364, DateTimeKind.Local).AddTicks(2943)
                         });
                 });
 
