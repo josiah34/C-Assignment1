@@ -17,6 +17,7 @@ namespace SportsPro.Data
         public DbSet<SportsPro.Models.Incident> Incident { get; set; }
         public DbSet<SportsPro.Models.Product> Product { get; set; }
         public DbSet<SportsPro.Models.Technician> Technician { get; set; }
+        public DbSet<SportsPro.Models.Registration> Registration { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
@@ -176,5 +177,8 @@ namespace SportsPro.Data
             );
                
         }
+
+
+       
     }
 }

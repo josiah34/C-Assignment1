@@ -10,14 +10,14 @@ using SportsPro.Data;
 namespace SportsPro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210409192144_Initial")]
+    [Migration("20210410022156_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.12")
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -360,7 +360,7 @@ namespace SportsPro.Migrations
                         {
                             IncidentId = 1,
                             CustomerId = 1,
-                            DateOpened = new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1020),
+                            DateOpened = new DateTime(2021, 4, 9, 22, 21, 55, 634, DateTimeKind.Local).AddTicks(173),
                             Description = "System is constantly crashing. Will not open",
                             ProductId = 1,
                             TechnicianId = 3,
@@ -370,7 +370,7 @@ namespace SportsPro.Migrations
                         {
                             IncidentId = 2,
                             CustomerId = 2,
-                            DateOpened = new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1722),
+                            DateOpened = new DateTime(2021, 4, 9, 22, 21, 55, 634, DateTimeKind.Local).AddTicks(1119),
                             Description = "Im having issues adding new staff to the system. Please Advise",
                             ProductId = 2,
                             TechnicianId = 1,
@@ -380,7 +380,7 @@ namespace SportsPro.Migrations
                         {
                             IncidentId = 3,
                             CustomerId = 3,
-                            DateOpened = new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1752),
+                            DateOpened = new DateTime(2021, 4, 9, 22, 21, 55, 634, DateTimeKind.Local).AddTicks(1187),
                             Description = "I am trying to create a new event for the registration but it crashes when I click submit.",
                             ProductId = 3,
                             TechnicianId = 2,
@@ -420,7 +420,7 @@ namespace SportsPro.Migrations
                             Code = "G4569",
                             Name = "Event System",
                             Price = 1525.99,
-                            ReleaseDate = new DateTime(2021, 4, 9, 15, 21, 44, 359, DateTimeKind.Local).AddTicks(8974)
+                            ReleaseDate = new DateTime(2021, 4, 9, 22, 21, 55, 628, DateTimeKind.Local).AddTicks(6891)
                         },
                         new
                         {
@@ -428,7 +428,7 @@ namespace SportsPro.Migrations
                             Code = "G4568",
                             Name = "Staff Management Software",
                             Price = 1525.99,
-                            ReleaseDate = new DateTime(2021, 4, 9, 15, 21, 44, 364, DateTimeKind.Local).AddTicks(2896)
+                            ReleaseDate = new DateTime(2021, 4, 9, 22, 21, 55, 633, DateTimeKind.Local).AddTicks(1747)
                         },
                         new
                         {
@@ -436,8 +436,30 @@ namespace SportsPro.Migrations
                             Code = "G4564",
                             Name = "Registration Software",
                             Price = 1525.99,
-                            ReleaseDate = new DateTime(2021, 4, 9, 15, 21, 44, 364, DateTimeKind.Local).AddTicks(2943)
+                            ReleaseDate = new DateTime(2021, 4, 9, 22, 21, 55, 633, DateTimeKind.Local).AddTicks(1794)
                         });
+                });
+
+            modelBuilder.Entity("SportsPro.Models.Registration", b =>
+                {
+                    b.Property<int?>("RegistrationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RegistrationId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Registration");
                 });
 
             modelBuilder.Entity("SportsPro.Models.Technician", b =>
@@ -555,6 +577,21 @@ namespace SportsPro.Migrations
                     b.HasOne("SportsPro.Models.Technician", "Technician")
                         .WithMany()
                         .HasForeignKey("TechnicianId");
+                });
+
+            modelBuilder.Entity("SportsPro.Models.Registration", b =>
+                {
+                    b.HasOne("SportsPro.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SportsPro.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

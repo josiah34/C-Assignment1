@@ -205,6 +205,32 @@ namespace SportsPro.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Registration",
+                columns: table => new
+                {
+                    RegistrationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registration", x => x.RegistrationId);
+                    table.ForeignKey(
+                        name: "FK_Registration_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Registration_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Incident",
                 columns: table => new
                 {
@@ -256,9 +282,9 @@ namespace SportsPro.Migrations
                 columns: new[] { "ProductId", "Code", "Name", "Price", "ReleaseDate" },
                 values: new object[,]
                 {
-                    { 1, "G4569", "Event System", 1525.99, new DateTime(2021, 4, 9, 15, 21, 44, 359, DateTimeKind.Local).AddTicks(8974) },
-                    { 2, "G4568", "Staff Management Software", 1525.99, new DateTime(2021, 4, 9, 15, 21, 44, 364, DateTimeKind.Local).AddTicks(2896) },
-                    { 3, "G4564", "Registration Software", 1525.99, new DateTime(2021, 4, 9, 15, 21, 44, 364, DateTimeKind.Local).AddTicks(2943) }
+                    { 1, "G4569", "Event System", 1525.99, new DateTime(2021, 4, 9, 22, 21, 55, 628, DateTimeKind.Local).AddTicks(6891) },
+                    { 2, "G4568", "Staff Management Software", 1525.99, new DateTime(2021, 4, 9, 22, 21, 55, 633, DateTimeKind.Local).AddTicks(1747) },
+                    { 3, "G4564", "Registration Software", 1525.99, new DateTime(2021, 4, 9, 22, 21, 55, 633, DateTimeKind.Local).AddTicks(1794) }
                 });
 
             migrationBuilder.InsertData(
@@ -274,17 +300,17 @@ namespace SportsPro.Migrations
             migrationBuilder.InsertData(
                 table: "Incident",
                 columns: new[] { "IncidentId", "CustomerId", "DateClosed", "DateOpened", "Description", "ProductId", "TechnicianId", "Title" },
-                values: new object[] { 2, 2, null, new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1722), "Im having issues adding new staff to the system. Please Advise", 2, 1, "Staff management system issue" });
+                values: new object[] { 2, 2, null, new DateTime(2021, 4, 9, 22, 21, 55, 634, DateTimeKind.Local).AddTicks(1119), "Im having issues adding new staff to the system. Please Advise", 2, 1, "Staff management system issue" });
 
             migrationBuilder.InsertData(
                 table: "Incident",
                 columns: new[] { "IncidentId", "CustomerId", "DateClosed", "DateOpened", "Description", "ProductId", "TechnicianId", "Title" },
-                values: new object[] { 3, 3, null, new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1752), "I am trying to create a new event for the registration but it crashes when I click submit.", 3, 2, "Registration system frozen" });
+                values: new object[] { 3, 3, null, new DateTime(2021, 4, 9, 22, 21, 55, 634, DateTimeKind.Local).AddTicks(1187), "I am trying to create a new event for the registration but it crashes when I click submit.", 3, 2, "Registration system frozen" });
 
             migrationBuilder.InsertData(
                 table: "Incident",
                 columns: new[] { "IncidentId", "CustomerId", "DateClosed", "DateOpened", "Description", "ProductId", "TechnicianId", "Title" },
-                values: new object[] { 1, 1, null, new DateTime(2021, 4, 9, 15, 21, 44, 365, DateTimeKind.Local).AddTicks(1020), "System is constantly crashing. Will not open", 1, 3, "Event System crashes" });
+                values: new object[] { 1, 1, null, new DateTime(2021, 4, 9, 22, 21, 55, 634, DateTimeKind.Local).AddTicks(173), "System is constantly crashing. Will not open", 1, 3, "Event System crashes" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -339,6 +365,16 @@ namespace SportsPro.Migrations
                 name: "IX_Incident_TechnicianId",
                 table: "Incident",
                 column: "TechnicianId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registration_CustomerId",
+                table: "Registration",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registration_ProductId",
+                table: "Registration",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -362,19 +398,22 @@ namespace SportsPro.Migrations
                 name: "Incident");
 
             migrationBuilder.DropTable(
+                name: "Registration");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Technician");
+
+            migrationBuilder.DropTable(
                 name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "Product");
-
-            migrationBuilder.DropTable(
-                name: "Technician");
         }
     }
 }
