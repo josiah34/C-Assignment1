@@ -1,11 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication4.Repository
+namespace SportsPro.Repository
 {
-    interface Interface
+    public interface IRepository<T> where T : class
     {
+        IEnumerable<T> List(QueryOptions<T> options);
+        T Get(int id);
+        void insert(T entity);
+        void update(T entity);
+        void delete(T entity);
+        void save();
+
     }
 }
