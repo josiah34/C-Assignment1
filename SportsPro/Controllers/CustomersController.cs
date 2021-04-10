@@ -61,6 +61,7 @@ namespace SportsPro.Controllers
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
+                TempData["message"] = $"{customer.Fullname} has been added";
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
