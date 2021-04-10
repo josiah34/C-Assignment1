@@ -60,6 +60,7 @@ namespace SportsPro.Controllers
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
+                TempData["message"] = $"{product.Name} has been added to Products";
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -111,6 +112,7 @@ namespace SportsPro.Controllers
                         throw;
                     }
                 }
+                TempData["message"] = $"{product.Name} has been edited";
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -142,6 +144,7 @@ namespace SportsPro.Controllers
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
+            TempData["message"] = $"{product.Name} has been deleted from Products";
             return RedirectToAction(nameof(Index));
         }
 

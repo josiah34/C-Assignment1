@@ -113,6 +113,7 @@ namespace SportsPro.Controllers
                         throw;
                     }
                 }
+                TempData["message"] = $"{customer.Fullname} has been edited";
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
@@ -144,6 +145,7 @@ namespace SportsPro.Controllers
             var customer = await _context.Customer.FindAsync(id);
             _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
+            TempData["message"] = $"{customer.Fullname} has been deleted";
             return RedirectToAction(nameof(Index));
         }
 

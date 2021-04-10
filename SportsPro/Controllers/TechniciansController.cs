@@ -60,6 +60,7 @@ namespace SportsPro.Controllers
             {
                 _context.Add(technician);
                 await _context.SaveChangesAsync();
+                TempData["message"] = $"{technician.Name} has been added to Technicians";
                 return RedirectToAction(nameof(Index));
             }
             return View(technician);
@@ -111,6 +112,7 @@ namespace SportsPro.Controllers
                         throw;
                     }
                 }
+                TempData["message"] = $"{technician.Name} has been edited";
                 return RedirectToAction(nameof(Index));
             }
             return View(technician);
@@ -142,6 +144,7 @@ namespace SportsPro.Controllers
             var technician = await _context.Technician.FindAsync(id);
             _context.Technician.Remove(technician);
             await _context.SaveChangesAsync();
+            TempData["message"] = $"{technician.Name} has been deleted from Technicians";
             return RedirectToAction(nameof(Index));
         }
 

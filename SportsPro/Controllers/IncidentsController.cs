@@ -70,6 +70,7 @@ namespace SportsPro.Controllers
             {
                 _context.Add(incident);
                 await _context.SaveChangesAsync();
+                TempData["message"] = $"{incident.Title} has been added";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId","Fullname", incident.CustomerId);
@@ -127,6 +128,7 @@ namespace SportsPro.Controllers
                         throw;
                     }
                 }
+                TempData["message"] = $"{incident.Title} has been edited";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "Fullname", incident.CustomerId);
@@ -164,6 +166,7 @@ namespace SportsPro.Controllers
             var incident = await _context.Incident.FindAsync(id);
             _context.Incident.Remove(incident);
             await _context.SaveChangesAsync();
+            TempData["message"] = $"{incident.Title} has been deleted";
             return RedirectToAction(nameof(Index));
         }
 
